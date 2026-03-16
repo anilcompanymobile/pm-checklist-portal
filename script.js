@@ -316,32 +316,32 @@ let checkpointData = {};
 
 rows.forEach((row,index)=>{
 
-if(index===0) return;
+if(index === 0) return;
 
-let checkpoint = row.cells[1].innerText;
+let checkpoint = row.cells[1].innerText.trim();
 
 let remarkInput = row.cells[4].querySelector("input");
-let remarks = remarkInput ? remarkInput.value : "";
+let remarks = remarkInput ? remarkInput.value.trim() : "";
 
 checkpointData[checkpoint] = remarks;
 
 });
 
-fetch("https://script.google.com/macros/s/AKfycbx9IZ5oaXqjmb0HBKG30AWzkIk7b9fl_EQj3TAsBjKOs46i75bklbIWOkPiWkwFw4mG/exec",{
+fetch("https://script.google.com/macros/s/AKfycbx9IZ5oaXqjmb0HBKG30AWzkIk7b9fl_EQj3TAsBjKOs46i75bklbIWOkPiWkwFw4mG/exec", {
 
 method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-phase:phase,
-mvps:mvps,
-equipment:equipment,
-equipId:equipId,
-data:checkpointData
+mode:"no-cors",
+body: JSON.stringify({
+phase: phase,
+mvps: mvps,
+equipment: equipment,
+equipId: equipId,
+data: checkpointData
 })
+
+}).catch(err=>{
+console.error("Data save error:", err);
 });
-    console.log(checkpointData);
 
 }
 // PDF GENERATION

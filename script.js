@@ -332,6 +332,10 @@ fetch("https://script.google.com/macros/s/AKfycbx9IZ5oaXqjmb0HBKG30AWzkIk7b9fl_E
 
 method:"POST",
 
+headers:{
+"Content-Type":"application/json"
+},
+
 body: JSON.stringify({
 block: mvps,
 equipment: equipment,

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>PM Checklist Portal</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="checklist_data.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+<script src="script.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="report">
+
+<div class="header">
+
+<img id="logoImg" class="logo">
+
+<div class="title">
+<h2>MBRSP-DEWA – VI 1800MW SOLAR PV POWER PLANT</h2>
+<h3 id="checklistTitle"></h3>
+</div>
+
+
+</div>
+
+<table>
+
+<tr>
+<td>Plant</td>
+<td>DEWA-VI</td>
+
+<td>Maint Order Number</td>
+<td><input id="mo"></td>
+
+<td>PTW No</td>
+<td><input id="ptw"></td>
+</tr>
+
+<tr>
+<td>Phase</td>
+<td>
+<select id="phase" onchange="updateMVPS()">
+<option>A</option>
+<option>B</option>
+<option>C</option>
+</select>
+</td>
+
+<td>MVPS No</td>
+<td>
+<select id="mvps"></select>
+</td>
+
+<td>Equipment</td>
+<td>
+<select id="equipment" onchange="loadChecklist()">
+<option>IDT</option>
+<option>RMU</option>
+<option>INVERTER</option>
+<option>DCB</option>
+<option>RIO PANEL</option>
+<option>PD BOX</option>
+<option>UPS & BATTERIES</option>
+<option>NCU</option>
+<option>WMS</option>
+<option>ROBOT GATEWAY PANEL</option>
+<option>CCTV</option>
+</select>
+</td>
+</tr>
+
+
+
+<tr>
+<td>Equipment Sr No</td>
+<td><input id="equipSr"></td>
+
+<td>Equipment ID</td>
+<td><input id="equipId"></td>
+
+<td>Frequency</td>
+<td><input id="freq"></td>
+</tr>
+
+<tr>
+<td>Planned Date</td>
+<td><input type="date"></td>
+
+<td>Start Time</td>
+<td><input type="time"></td>
+
+<td>Finish Time</td>
+<td><input type="time"></td>
+</tr>
+
+<tr>
+<td>Maintenance In charge</td>
+<td>
+<select id="maintIncharge">
+<option>Pramod Kumar Samala</option>
+<option>Anil Kumar Cherukuri</option>
+</select>
+</td>
+
+<td>Position</td>
+<td>
+<select>
+<option>PV Engineer</option>
+<option>Sr. PV Engineer</option>
+<option>PV Lead</option>
+</select>
+</td>
+
+<td>Reviewed By</td>
+<td>
+<select id="reviewer">
+<option>Anil Kumar Cherukuri</option>
+<option>Bikash Kumar Luha</option>
+</select>
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<br><br>
+
+<table id="checklistTable">
+
+<tr>
+<th>Sr No</th>
+<th>Check Point</th>
+<th>Requirement</th>
+<th>Frequency</th>
+<th>Remarks</th>
+</tr>
+
+</table>
+
+<br>
+
+<div class="signatureSection">
+
+<div>
+
+<h4>Performed By</h4>
+
+<select id="tech">
+
+<option>Vishal Sharma</option>
+<option>Akhil Rodda</option>
+<option>Premdas</option>
+<option>Mohan Kumar</option>
+<option>NAVDEEP SINGH</option>
+<option>SAKTHIVEL</option>
+<option>SURESH GOUD</option>
+<option>PRANEEL GANGULA</option>
+<option>BALMURUGAN</option>
+<option>Mahesh Sirnam</option>
+<option>SHAIKSHAVALI</option>
+
+</select>
+
+<input type="file" id="techSign">
+
+</div>
+
+<div>
+
+<h4>Submitted By</h4>
+
+<select id="submitBy">
+
+<option>Pramod Kumar Samala - PV Engineer</option>
+<option>Anil Kumar Cherukuri - Sr. PV Engineer</option>
+
+</select>
+
+<input type="file" id="submitSign">
+
+</div>
+
+<div>
+
+<h4>Reviewed By</h4>
+
+<select id="reviewBy">
+
+<option>Anil Kumar Cherukuri - Sr. PV Engineer</option>
+<option>Bikash Kumar Luha - PV Lead</option>
+
+</select>
+
+<input type="file" id="reviewSign">
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<button onclick="generatePDF()">Generate Report</button>
+
+</body>
+
+</html>

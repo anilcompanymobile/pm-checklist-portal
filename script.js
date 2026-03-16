@@ -302,23 +302,38 @@ reader.readAsDataURL(file);
 
 });
 
-function saveData(data){
+function saveData(){
+
+let phase = document.getElementById("phase").value;
+let mvps = document.getElementById("mvps").value;
+let equipment = document.getElementById("equipment").value;
+
+let remarks = "PM Completed";
+let status = "OK";
+let checklist = document.getElementById("checklistTitle").innerText;
 
 fetch("https://script.google.com/macros/s/AKfycbx9IZ5oaXqjmb0HBKG30AWzkIk7b9fl_EQj3TAsBjKOs46i75bklbIWOkPiWkwFw4mG/exec", {
   method: "POST",
   body: JSON.stringify({
-    block: block,
+    block: mvps,
     equipment: equipment,
     checklist: checklist,
     status: status,
     remarks: remarks
   })
-});
+})
+.then(res => res.text())
+.then(res => console.log(res))
+.catch(err => console.log(err));
+
+}
 
 // PDF GENERATION
 
 async function generatePDF(){
 
+saveData();
+    
 const { jsPDF } = window.jspdf;
 
 let report = document.getElementById("report");

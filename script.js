@@ -302,6 +302,20 @@ reader.readAsDataURL(file);
 
 });
 
+function saveData(data){
+
+fetch("https://script.google.com/macros/s/AKfycby-09dN-KZZvmB00yGwFkpb16IrBzah7nnj_dqvyZOs56EeB8kt5inHzFXA_3BO4Zwt/exec",{
+
+method:"POST",
+
+body: JSON.stringify(data)
+
+})
+.then(res => res.text())
+.then(res => console.log(res));
+
+}
+
 // PDF GENERATION
 
 async function generatePDF(){

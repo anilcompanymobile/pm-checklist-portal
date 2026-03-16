@@ -304,15 +304,14 @@ reader.readAsDataURL(file);
 
 function saveData(data){
 
-fetch("https://script.google.com/macros/s/AKfycby-09dN-KZZvmB00yGwFkpb16IrBzah7nnj_dqvyZOs56EeB8kt5inHzFXA_3BO4Zwt/exec",{
+fetch("https://script.google.com/macros/s/AKfycbwE8hVCYpRxKvco-uDUsYIk4ueEvVvEuSuVkO5PsdoMBLTChEEg3IEmTxWomnrLBw84/exec",{
 
 method:"POST",
 
 body: JSON.stringify(data)
-
 })
-.then(res => res.text())
-.then(res => console.log(res));
+.then(response => response.text())
+.then(data => console.log(data));
 
 }
 

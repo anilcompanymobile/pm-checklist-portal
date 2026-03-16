@@ -304,16 +304,16 @@ reader.readAsDataURL(file);
 
 function saveData(data){
 
-fetch("https://script.google.com/macros/s/AKfycbwE8hVCYpRxKvco-uDUsYIk4ueEvVvEuSuVkO5PsdoMBLTChEEg3IEmTxWomnrLBw84/exec",{
-
-method:"POST",
-
-body: JSON.stringify(data)
-})
-.then(response => response.text())
-.then(data => console.log(data));
-
-}
+fetch("https://script.google.com/macros/s/AKfycbx9IZ5oaXqjmb0HBKG30AWzkIk7b9fl_EQj3TAsBjKOs46i75bklbIWOkPiWkwFw4mG/exec", {
+  method: "POST",
+  body: JSON.stringify({
+    block: block,
+    equipment: equipment,
+    checklist: checklist,
+    status: status,
+    remarks: remarks
+  })
+});
 
 // PDF GENERATION
 

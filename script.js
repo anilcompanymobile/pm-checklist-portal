@@ -341,6 +341,7 @@ equipId:equipId,
 data:checkpointData
 })
 });
+    console.log(checkpointData);
 
 }
 // PDF GENERATION

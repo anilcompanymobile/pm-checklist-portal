@@ -303,31 +303,44 @@ reader.readAsDataURL(file);
 });
 
 function saveData(){
+
 let mvps = document.getElementById("mvps").value;
 let equipment = document.getElementById("equipment").value;
+
 let table = document.getElementById("checklistTable");
 let rows = table.querySelectorAll("tr");
+
+let checklistData = [];
+
 rows.forEach((row,index)=>{
-if(index===0) return; // skip header
+
+if(index===0) return;
 
 let checkpoint = row.cells[1].innerText;
+
 let remarkInput = row.cells[4].querySelector("input");
 let remarks = remarkInput ? remarkInput.value : "";
+
+checklistData.push({
+checkpoint: checkpoint,
+remarks: remarks
+});
+
+});
 
 fetch("https://script.google.com/macros/s/AKfycbx9IZ5oaXqjmb0HBKG30AWzkIk7b9fl_EQj3TAsBjKOs46i75bklbIWOkPiWkwFw4mG/exec",{
 
 method:"POST",
-body:JSON.stringify({
+
+body: JSON.stringify({
 block: mvps,
 equipment: equipment,
-checklist: checkpoint,
-status: "OK",
-remarks: remarks
+data: checklistData
 })
 
-});
-
-});
+})
+.then(res=>res.text())
+.then(data=>console.log(data));
 
 }
 // PDF GENERATION

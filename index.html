@@ -777,7 +777,7 @@ function updateMVPS(){
 // ================================================================
 function loadChecklist(){
   const eq = document.getElementById("equipmentSelect").value;
-  document.getElementById("checklistTitle").textContent = eq + " — Preventive Maintenance Checklist";
+  document.getElementById("checklistTitle").textContent = eq + " - Preventive Maintenance Checklist";
 
   // map type
   let type = eq;
@@ -999,7 +999,7 @@ function generateExcel(){
       ws2["!cols"] = importHeaders.map(function(_,i){ return {wch:i<4?18:22}; });
       XLSX.utils.book_append_sheet(wb,"Data Import",ws2);
 
-      const fn = "PM_Checklist_Phase"+phase+"_MVPS"+mvps+"_"+safeEq+"_"+(equipId||"XX")+"date".xlsx";
+      const fn = "PM_Checklist_Phase"+phase+"_MVPS"+mvps+"_"+safeEq+"_"+(equipId||"XX")"_"+date".xlsx";
       XLSX.writeFile(wb, fn);
       xlsxOk = true;
       showStatus("Excel exported: "+fn+" (2 sheets: PM Checklist + Data Import)", "success");
